@@ -67,7 +67,8 @@ body {
 }
 
 /* Active tab style */
-.nav-links input[type="radio"]:checked + label {
+#tab-home:checked ~ .sidebar label[for="tab-home"],
+#tab-games:checked ~ .sidebar label[for="tab-games"] {
   background-color: rgba(211, 47, 47, 0.1);
   color: var(--accent-red);
   border-left: 4px solid var(--accent-red);
@@ -84,6 +85,12 @@ body {
 /* Hide content blocks by default */
 .section {
   display: none;
+}
+
+/* Show sections based on radio button state */
+#tab-home:checked ~ .content #section-home,
+#tab-games:checked ~ .content #section-games {
+  display: block;
 }
 
 h1 {
@@ -154,9 +161,46 @@ h1 {
   background-color: var(--hover-red);
 }
 
-/* Logic to display sections on click */
-#tab1:checked ~ .content #content1,
-#tab2:checked ~ .content #content2,
-#tab3:checked ~ .content #content3 {
-  display: block;
+/* Game Grid Styles */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.game-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text-primary);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  min-height: 120px;
+}
+
+.game-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 16px rgba(211, 47, 47, 0.3);
+  background: rgba(211, 47, 47, 0.1);
+  border-color: var(--accent-red);
+}
+
+.game-thumbnail {
+  font-size: 48px;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.game-card span {
+  font-weight: 600;
+  font-size: 13px;
+  word-break: break-word;
 }
